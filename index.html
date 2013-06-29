@@ -1,12 +1,22 @@
 <!DOCTYPE html>
-<html>
+<html manifest="manifest.appcache">
   <head>
     <title>Next Boat</title>
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
     <meta name="viewport" content="user-scalable=no, width=device-width">
+    
+    <script>
+
+    	function onTouchMove(event)
+    	{
+    		event.preventDefault();
+    	}
+
+    </script>
+
   </head>
-  <body>
-    Test 123  
+  <body ontouchmove="onTouchMove(event);">
+    Test 456
   </body>
 </html>

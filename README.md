@@ -1,4 +1,4 @@
 next-boat
 =========
 
-Next Ferry Boat iPhone App
+Next Ferry Boat - iPhone App
