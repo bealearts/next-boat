@@ -1,9 +1,11 @@
 language: node_js
 
+env:
+  - secure: "cKz5Tw+5DEwKF6FWGwUbMPoIExFWoJy3H04S98nAyTkbpFMAru0g/2Hx57vl\nXQeKxCCFBovks5dDjprB4RCrkfocFwDNSm+HkWTXD9l2iTEGWDuaRV04Pyud\nLE6/ZcuL67G/waUaBuhx1SA0IHvDi72NzQugIKTZ4bLCeTo7h6c="
+
 script:
   - grunt deploy --verbose 
 
 before_script:
   - npm install -g grunt-cli
-  - secure: "cKz5Tw+5DEwKF6FWGwUbMPoIExFWoJy3H04S98nAyTkbpFMAru0g/2Hx57vl\nXQeKxCCFBovks5dDjprB4RCrkfocFwDNSm+HkWTXD9l2iTEGWDuaRV04Pyud\nLE6/ZcuL67G/waUaBuhx1SA0IHvDi72NzQugIKTZ4bLCeTo7h6c="
   - openssl aes-256-cbc -k "$FTP_PASS" -in .ftppass.enc -d -a -out .ftppass
