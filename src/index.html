@@ -8,15 +8,17 @@
     
     <script>
 
-    	function onTouchMove(event)
+    	function preventScrolling(event)
     	{
     		event.preventDefault();
     	}
 
+    	document.addEventListener("touchmove", preventScrolling);
+
     </script>
 
   </head>
-  <body ontouchmove="onTouchMove(event);">
-    Test 456
+  <body>
+    Test 123
   </body>
 </html>

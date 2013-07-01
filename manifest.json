@@ -1,0 +1,16 @@
+{
+  "generate": 
+  {
+    "options": 
+    {
+      "basePath": "./src",
+      "network": ["http://*", "https://*"],
+      "fallback": [],
+      "exclude": [],
+      "preferOnline": true,
+      "timestamp": true
+    },
+    "src": ["*.*"],
+    "dest": "./build/manifest.appcache"
+  }
+}
