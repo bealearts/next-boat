@@ -1,4 +1,7 @@
 language: node_js
 
+script:
+  - grunt build --verbose 
+
 before_script:
   - npm install -g grunt-cli

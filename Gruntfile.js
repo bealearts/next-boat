@@ -1,8 +1,10 @@
 module.exports = function(grunt) {
 
-  // Tasks
+  // Libs
   grunt.loadNpmTasks('grunt-manifest');
   grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-ftp-deploy');
+
 
   // Project configuration.
   grunt.initConfig(
@@ -20,12 +22,36 @@ module.exports = function(grunt) {
           }
         ]
       }
+    },
+    'ftp-deploy': {
+      build: {  
+        auth: {
+          host: 'ftp.bealearts.co.uk',
+          port: 21,
+          authKey: 'upload'
+        },
+        src: 'build/',
+        dest: '/html/bealearts.co.uk/next-boat'
+      }
     }
   });
 
-  grunt.registerTask('default', [
+
+
+  // Tasks
+  grunt.registerTask('build', [
         'copy',
         'manifest'
   ]);
+
+  grunt.registerTask('deploy', [
+        'build',
+        'ftp-deploy'
+  ]);
+
+  grunt.registerTask('default', [
+        'build'
+  ]);
+
 
 };
