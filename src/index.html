@@ -1,24 +1,30 @@
 <!DOCTYPE html>
-<html manifest="manifest.appcache">
+<html xmlns:ng="http://angularjs.org"
+  xmanifest="manifest.appcache" ng:app="next-boat"
+>
   <head>
     <title>Next Boat</title>
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
     <meta name="viewport" content="user-scalable=no, width=device-width">
-    
+      
+    <script src="lib/angular.js"></script>
+    <script src="next-boat/js/routes.js"></script>
+    <script src="next-boat/js/main-ctrl.js"></script>
+
     <script>
 
-    	function preventScrolling(event)
-    	{
-    		event.preventDefault();
-    	}
+      function preventScrolling(event)
+      {
+        event.preventDefault();
+      }
 
-    	document.addEventListener("touchmove", preventScrolling);
+      document.addEventListener("touchmove", preventScrolling);
 
     </script>
 
   </head>
   <body>
-    Test 123
+    <ng:view/>
   </body>
 </html>
