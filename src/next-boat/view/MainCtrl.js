@@ -11,4 +11,9 @@ module.controller('MainCtrl', function ($scope, RiverBusPredictionsService){
 		return Math.ceil( (time.getTime()-now.getTime()) / MINUTES);
 	}
 
+	$scope.filterPiers = function(prediction)
+	{ 
+		return prediction.pierName == 'Canary Wharf' || prediction.pierName == 'Greenland'; 
+	}
+
 });
