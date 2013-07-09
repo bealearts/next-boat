@@ -15,9 +15,9 @@
 	});
 
 	/* Controllers */
-	<!--#include virtual="view/MainCtrl.js" -->
+	<!--(bake view/MainCtrl.js)-->
 
 	/* Services */
-	<!--#include virtual="service/RiverBusPredictionsService.js" -->
+	<!--(bake service/RiverBusPredictionsService.js)-->
 
 }());

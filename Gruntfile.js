@@ -4,6 +4,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-manifest');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-ftp-deploy');
+  grunt.loadNpmTasks('grunt-bake');
 
 
   // Project configuration.
@@ -12,15 +13,22 @@ module.exports = function(grunt) {
     packkage: grunt.file.readJSON('package.json'),
     manifest: grunt.file.readJSON('manifest.json'),
     copy: {
-      dist: {
+      build: {
         files: [
           {
             expand: true,
             cwd: 'src/',
-            src: ['.htaccess', '**/*.*'], 
+            src: ['.htaccess', '**/*.*', '!**/*.js'], 
             dest: 'build/'
           }
         ]
+      }
+    },
+    bake: {
+      build: {
+        files: {
+          'build/next-boat/next-boat.js' : 'src/next-boat/next-boat.js'
+        }
       }
     },
     'ftp-deploy': {
@@ -41,7 +49,8 @@ module.exports = function(grunt) {
   // Tasks
   grunt.registerTask('build', [
         'copy',
-        'manifest'
+        'manifest',
+        'bake'
   ]);
 
   grunt.registerTask('deploy', [

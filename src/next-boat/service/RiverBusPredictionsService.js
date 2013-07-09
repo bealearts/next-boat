@@ -34,7 +34,7 @@ module.factory('RiverBusPredictionsService', function ($http, $log, $q){
 					pierID: item[2],
 					pierName: item[1],
 					pierStatus: item[3],
-					boatDirection: item[4],
+					boatDirection: item[4] == 1 ? 'East': 'West',
 					boatDestination: item[5],
 					expectedTime: new Date(item[6])
 				};
