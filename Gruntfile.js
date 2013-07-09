@@ -5,6 +5,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-ftp-deploy');
   grunt.loadNpmTasks('grunt-bake');
+  grunt.loadNpmTasks('grunt-contrib-watch');
 
 
   // Project configuration.
@@ -18,7 +19,7 @@ module.exports = function(grunt) {
           {
             expand: true,
             cwd: 'src/',
-            src: ['.htaccess', '**/*.*', '!**/*.js'], 
+            src: ['.htaccess', '**/*.*', 'service/.htaccess', '!next-boat/**/*.js'], 
             dest: 'build/'
           }
         ]
@@ -41,7 +42,13 @@ module.exports = function(grunt) {
         src: 'build/',
         dest: '/html/bealearts.co.uk/next-boat'
       }
-    }
+    },
+    watch: {
+      bake: {
+          files: [ "src/**" ],
+          tasks: "bake:build"
+      }
+}
   });
 
 
