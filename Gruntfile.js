@@ -4,8 +4,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-manifest');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-ftp-deploy');
-  grunt.loadNpmTasks('grunt-bake');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-concat');
 
 
   // Project configuration.
@@ -25,11 +25,14 @@ module.exports = function(grunt) {
         ]
       }
     },
-    bake: {
+    concat: {
+      options: {
+        banner: '(function(){\n\n"use strict";\n\nvar module = angular.module(\'next-boat\', []);\n\n',
+        footer: '\n\n}());'
+      },
       build: {
-        files: {
-          'build/next-boat/next-boat.js' : 'src/next-boat/next-boat.js'
-        }
+        src: ['src/next-boat/**/*.js'],
+        dest: 'build/next-boat/next-boat.js'
       }
     },
     'ftp-deploy': {
@@ -44,9 +47,9 @@ module.exports = function(grunt) {
       }
     },
     watch: {
-      bake: {
-          files: [ "*.*", "src/**/*.*" ],
-          tasks: "build"
+      main: {
+          files: [ '*.*', 'src/**/*.*' ],
+          tasks: 'build'
       }
 }
   });
@@ -57,7 +60,7 @@ module.exports = function(grunt) {
   grunt.registerTask('build', [
         'copy',
         'manifest',
-        'bake'
+        'concat'
   ]);
 
   grunt.registerTask('deploy', [
