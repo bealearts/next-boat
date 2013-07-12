@@ -13,7 +13,7 @@ module.controller('MainCtrl', function ($scope, RiverBusPredictionsService){
 
 	$scope.filterPiers = function(prediction)
 	{ 
-		return prediction.pierName == 'Canary Wharf' || prediction.pierName == 'Greenland'; 
+		return prediction.pier.name == 'Canary Wharf' || prediction.pier.name == 'Greenland'; 
 	}
 
 });

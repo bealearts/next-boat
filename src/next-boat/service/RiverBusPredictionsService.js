@@ -30,14 +30,14 @@ module.factory('RiverBusPredictionsService', function ($http, $log, $q){
 			for (var i = 1; i<data.length; i++)
 			{
 				var item = data[i];
-				var prediction = {
-					pierID: item[2],
-					pierName: item[1],
-					pierStatus: item[3],
-					boatDirection: item[4] == 1 ? 'East': 'West',
-					boatDestination: item[5],
-					expectedTime: new Date(item[6])
-				};
+				var prediction = new Prediction();
+
+				prediction.pier.id = item[2];
+				prediction.pier.name = item[1];
+				prediction.pier.status = item[3];
+				prediction.boat.direction = item[4] == 1 ? 'East': 'West';
+				prediction.boat.destination = item[5];
+				prediction.expectedTime = new Date(item[6]);
 
 				predictions.push(prediction);
 			}	

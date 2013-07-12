@@ -1,5 +1,5 @@
 <ul>
-	<li ng:repeat="prediction in predictions | filter: filterPiers | orderBy:'pierName'">
-		<strong>{{prediction.pierName}}</strong> going {{prediction.boatDirection}} to {{prediction.boatDestination}} in {{minutesUntil(prediction.expectedTime)}}mins
+	<li ng:repeat="prediction in predictions | filter: filterPiers | orderBy:'pier.name'">
+		<strong>{{prediction.pier.name}}</strong> going {{prediction.boat.direction}} to {{prediction.boat.destination}} in {{minutesUntil(prediction.expectedTime)}}mins
 	</li>
 </ul>
