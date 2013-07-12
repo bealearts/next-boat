@@ -19,7 +19,7 @@ module.exports = function(grunt) {
           {
             expand: true,
             cwd: 'src/',
-            src: ['.htaccess', '**/*.*', 'service/.htaccess', '!next-boat/**/*.js'], 
+            src: ['**/.htaccess', '**/*.*', '!next-boat/**/*.js'], 
             dest: 'build/'
           }
         ]
