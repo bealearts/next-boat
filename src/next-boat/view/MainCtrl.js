@@ -1,7 +1,13 @@
 
 module.controller('MainCtrl', function ($scope, RiverBusPredictionsService){
 
-	$scope.predictions = RiverBusPredictionsService();
+	$scope.topPier = new Pier('9300GLP', 'Greenland');
+	$scope.bottomPier = new Pier('930CAW', 'Canary Wharf');
+
+
+	$scope.topPierPredictions = RiverBusPredictionsService.subscribe($scope.topPier);
+	$scope.bottomPierPredictions = RiverBusPredictionsService.subscribe($scope.bottomPier);
+
 
 	$scope.minutesUntil = function(time)
 	{
@@ -9,11 +15,6 @@ module.controller('MainCtrl', function ($scope, RiverBusPredictionsService){
 		var MINUTES = 60*1000;
 
 		return Math.ceil( (time.getTime()-now.getTime()) / MINUTES);
-	}
-
-	$scope.filterPiers = function(prediction)
-	{ 
-		return prediction.pier.name == 'Canary Wharf' || prediction.pier.name == 'Greenland'; 
 	}
 
 });

@@ -1,9 +1,9 @@
 
-var Pier = function()
+var Pier = function(id, name)
 {
 
-	this.id = '';
-	this.name = '';
+	this.id = id || '';
+	this.name = name || '';
 	this.status = '';
 
 }
