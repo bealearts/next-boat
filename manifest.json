@@ -10,7 +10,7 @@
       "preferOnline": true,
       "timestamp": true
     },
-    "src": ["*.*"],
+    "src": ["**/*.*", "!next-boat/*/*.js"],
     "dest": "./build/manifest.appcache"
   }
 }

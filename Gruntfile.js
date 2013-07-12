@@ -45,7 +45,7 @@ module.exports = function(grunt) {
     },
     watch: {
       bake: {
-          files: [ "src/**" ],
+          files: [ "*.*", "src/**/*.*" ],
           tasks: "build"
       }
 }
