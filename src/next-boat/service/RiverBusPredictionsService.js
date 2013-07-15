@@ -1,5 +1,5 @@
 	
-module.factory('RiverBusPredictionsService', function ($http, $log, $q, $timeout){
+module.factory('RiverBusPredictionsService', function ($http, $log, StreamingPromise, $timeout){
 
 	var URL = '/service/';
 	
@@ -9,10 +9,11 @@ module.factory('RiverBusPredictionsService', function ($http, $log, $q, $timeout
 
 		this.subscribe = function(pier) 
 		{
+			$log.info('Subscribing to predictions for pier:', pier.id);
+
 			if (!pierToDeferMap[pier.id])
 			{
-				pierToDeferMap[pier.id] = $q.defer();
-				pierToPredictionsMap[pier.id] = [];
+				pierToDeferMap[pier.id] = StreamingPromise.defer();
 			}
 
 			if (!dataRequestInProgress)
@@ -25,8 +26,9 @@ module.factory('RiverBusPredictionsService', function ($http, $log, $q, $timeout
 
 		this.unsubscribe = function(pier)
 		{
+			$log.info('Unsubscribing from predictions for pier "' + pier.id + '"');
+
 			delete pierToDeferMap[pier.id];
-			delete pierToPredictionsMap[pier.id];
 		}
 
 
@@ -44,8 +46,6 @@ module.factory('RiverBusPredictionsService', function ($http, $log, $q, $timeout
 		function getData() 
 		{
 			dataRequestInProgress = true;
-
-			clearPredictions();
 
 			// + 'StopCode2=930CAW,9300GLP'
 
@@ -72,14 +72,20 @@ module.factory('RiverBusPredictionsService', function ($http, $log, $q, $timeout
 				for (var i = 1; i<data.length; i++)
 				{
 					var item = data[i];
+					var pierId = item[2];
 
-					var predictions = pierToPredictionsMap[item[2]];	
+					if (!pierToPredictionsMap[pierId])
+					{
+						pierToPredictionsMap[pierId] = [];
+					}	
+
+					var predictions = pierToPredictionsMap[pierId];	
 
 					if (predictions)
 					{
 						var prediction = new Prediction();
 
-						prediction.pier.id = item[2];
+						prediction.pier.id = pierId;
 						prediction.pier.name = item[1];
 						prediction.pier.status = item[3];
 						prediction.boat.direction = item[4] == 1 ? 'East': 'West';
@@ -93,9 +99,11 @@ module.factory('RiverBusPredictionsService', function ($http, $log, $q, $timeout
 				// Update Promises
 				for (var pierId in pierToDeferMap)
 				{
+	console.log(pierToDeferMap[pierId], pierToPredictionsMap[pierId]);
 					pierToDeferMap[pierId].resolve(pierToPredictionsMap[pierId]);
 				}
 
+				clearPredictions();
 
 				// Start polling
 				pollingPromise = $timeout(getData, 30000, false);
@@ -111,16 +119,15 @@ module.factory('RiverBusPredictionsService', function ($http, $log, $q, $timeout
 				{
 					pierToDeferMap[pierId].reject([]);
 				}
+
+				clearPredictions();
 			});	
 		}	
 
 
 		function clearPredictions()
 		{
-			for (var pierId in pierToPredictionsMap)
-			{
-				pierToPredictionsMap[pierId] = [];
-			}
+			pierToPredictionsMap = {};
 		}
 
 
