@@ -1,5 +1,5 @@
 
-module.factory('StreamingPromise', function ($rootScope) {
+module.factory('StreamingPromise', ['$rootScope', function ($rootScope) {
 
 	var StreamingPromise = function()
 	{
@@ -93,4 +93,4 @@ module.factory('StreamingPromise', function ($rootScope) {
 	}
 	
 	return new StreamingPromise;
-});
+}]);

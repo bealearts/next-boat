@@ -1,5 +1,5 @@
 
-module.controller('PredictionDirectiveCtrl', function($scope)
+module.controller('PredictionDirectiveCtrl', ['$scope', function($scope)
 {
 	$scope.minutesUntil = function(time)
 	{
@@ -8,4 +8,4 @@ module.controller('PredictionDirectiveCtrl', function($scope)
 
 		return Math.ceil( (time.getTime()-now.getTime()) / MINUTES);
 	}
-});
+}]);

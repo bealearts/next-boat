@@ -1,7 +1,7 @@
 
-module.directive('nbPrediction', function(){
+module.directive('nbPrediction', [function(){
 	
-	var directive = {
+	return {
 		restrict: 'E',
 		replace: true,
 		templateUrl: 'next-boat/directive/PredictionDirective.html',
@@ -11,5 +11,4 @@ module.directive('nbPrediction', function(){
 		controller: 'PredictionDirectiveCtrl'
 	};
 
-	return directive;
-});
+}]);

@@ -1,5 +1,5 @@
 	
-module.factory('RiverBusPredictionsService', function ($http, $log, StreamingPromise, $timeout){
+module.factory('RiverBusPredictionsService', ['$http', '$log', 'StreamingPromise', '$timeout', function ($http, $log, streamingPromise, $timeout){
 
 	var URL = '/service/';
 	
@@ -13,7 +13,7 @@ module.factory('RiverBusPredictionsService', function ($http, $log, StreamingPro
 
 			if (!pierToDeferMap[pier.id])
 			{
-				pierToDeferMap[pier.id] = StreamingPromise.defer();
+				pierToDeferMap[pier.id] = streamingPromise.defer();
 			}
 
 			if (!dataRequestInProgress)
@@ -134,4 +134,4 @@ module.factory('RiverBusPredictionsService', function ($http, $log, StreamingPro
 
 
 	return new RiverBusPredictionsService();
-});
+}]);
