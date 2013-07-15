@@ -99,7 +99,6 @@ module.factory('RiverBusPredictionsService', function ($http, $log, StreamingPro
 				// Update Promises
 				for (var pierId in pierToDeferMap)
 				{
-	console.log(pierToDeferMap[pierId], pierToPredictionsMap[pierId]);
 					pierToDeferMap[pierId].resolve(pierToPredictionsMap[pierId]);
 				}
 

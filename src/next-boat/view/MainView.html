@@ -1,10 +1,4 @@
-<ul>
-	<li ng:repeat="prediction in topPierPredictions | orderBy:'expectedTime.getTime()'">
-		<strong>{{prediction.pier.name}}</strong> going {{prediction.boat.direction}} to {{prediction.boat.destination}} in {{minutesUntil(prediction.expectedTime)}}mins
-	</li>
-</ul>
-<ul>
-	<li ng:repeat="prediction in bottomPierPredictions | orderBy:'expectedTime.getTime()'">
-		<strong>{{prediction.pier.name}}</strong> going {{prediction.boat.direction}} to {{prediction.boat.destination}} in {{minutesUntil(prediction.expectedTime)}}mins
-	</li>
-</ul>
+
+<nb:prediction predictions="topPierPredictions"></nb:prediction>
+
+<nb:prediction predictions="bottomPierPredictions"></nb:prediction>

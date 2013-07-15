@@ -1,0 +1,5 @@
+<ul>
+	<li ng:repeat="prediction in predictions | orderBy:'expectedTime.getTime()'">
+		<strong>{{prediction.pier.name}}</strong> going {{prediction.boat.direction}} to {{prediction.boat.destination}} in {{minutesUntil(prediction.expectedTime)}}mins
+	</li>
+</ul>
