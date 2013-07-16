@@ -28,7 +28,7 @@ module.exports = function(grunt) {
     concat: {
       options: {
         banner: '(function(){\n\n"use strict";\n\nvar module = angular.module(\'next-boat\', []);\n\n',
-        footer: '\n\n}());'
+        footer: '\n\n}.call({}));'
       },
       build: {
         src: ['src/next-boat/**/*.js'],
