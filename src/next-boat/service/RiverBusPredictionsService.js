@@ -11,30 +11,30 @@ module.factory('RiverBusPredictionsService', ['$http', '$log', 'StreamingPromise
 		{
 			$log.info('Subscribing to predictions for pier:', pier.id);
 
-			if (!pierToDeferMap[pier.id])
+			if (!pierToSubscriptionMap[pier.id])
 			{
-				pierToDeferMap[pier.id] = streamingPromise.defer();
+				pierToSubscriptionMap[pier.id] = new Subscription(pier, streamingPromise.defer());
 			}
 
-			if (!dataRequestInProgress)
+			//if (!dataRequestInProgress)
 			{
 				getData();
 			}
 
-			return pierToDeferMap[pier.id].promise;
+			return pierToSubscriptionMap[pier.id].deferrer.promise;
 		}
 
 		this.unsubscribe = function(pier)
 		{
 			$log.info('Unsubscribing from predictions for pier "' + pier.id + '"');
 
-			delete pierToDeferMap[pier.id];
+			delete pierToSubscriptionMap[pier.id];
 		}
 
 
 		/* PRIVATE */
 
-		var pierToDeferMap = {};
+		var pierToSubscriptionMap = {};	// The Subscribed to Piers
 
 		var pierToPredictionsMap = {};
 
@@ -53,7 +53,7 @@ module.factory('RiverBusPredictionsService', ['$http', '$log', 'StreamingPromise
 
 			var http = $http({
 				method: 'GET',
-				url: URL,
+				url: getSearchUrl(),
 				transformResponse: function(data)
 				{
 					// Clean up TFL JSON
@@ -97,9 +97,9 @@ module.factory('RiverBusPredictionsService', ['$http', '$log', 'StreamingPromise
 				}	
 
 				// Update Promises
-				for (var pierId in pierToDeferMap)
+				for (var pierId in pierToSubscriptionMap)
 				{
-					pierToDeferMap[pierId].resolve(pierToPredictionsMap[pierId]);
+					pierToSubscriptionMap[pierId].deferrer.resolve(pierToPredictionsMap[pierId]);
 				}
 
 				clearPredictions();
@@ -114,9 +114,9 @@ module.factory('RiverBusPredictionsService', ['$http', '$log', 'StreamingPromise
 				
 				dataRequestInProgress = false;
 
-				for (var pierId in pierToDeferMap)	
+				for (var pierId in pierToSubscriptionMap)	
 				{
-					pierToDeferMap[pierId].reject([]);
+					pierToSubscriptionMap[pierId].deferrer.reject([]);
 				}
 
 				clearPredictions();
@@ -130,8 +130,27 @@ module.factory('RiverBusPredictionsService', ['$http', '$log', 'StreamingPromise
 		}
 
 
+		function getSearchUrl()
+		{
+			var result = URL + '?StopPointName=';
+
+			for (var pierId in pierToSubscriptionMap)
+			{
+				result += pierToSubscriptionMap[pierId].pier.name + ',';
+			}
+
+			return result;
+		}
+
+
 	};
 
+
+	var Subscription = function (pier, deferrer)
+	{
+		this.pier = pier;
+		this.deferrer = deferrer;
+	}
 
 	return new RiverBusPredictionsService();
 }]);

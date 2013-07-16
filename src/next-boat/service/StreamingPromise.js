@@ -1,4 +1,7 @@
 
+/**
+ * A Streaming implementation of the $q.defer() and Promise mechanisms
+ */
 module.factory('StreamingPromise', ['$rootScope', function ($rootScope) {
 
 	var StreamingPromise = function()
