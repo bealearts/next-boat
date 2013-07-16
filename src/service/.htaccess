@@ -1,2 +1,3 @@
 RewriteEngine on
-RewriteRule (.*) http://countdown.api.tfl.gov.uk/interfaces/ura/instant_V1?StopPointType=SLRS&LineID=RB1&ReturnList=StopPointName,StopCode2,StopPointState,DirectionID,DestinationText,EstimatedTime&$1 [NE,P]
+RewriteCond %{QUERY_STRING} (.*)
+RewriteRule (.*) http://countdown.api.tfl.gov.uk/interfaces/ura/instant_V1?StopPointType=SLRS&LineID=RB1&ReturnList=StopPointName,StopCode2,StopPointState,DirectionID,DestinationText,EstimatedTime&%1 [NE,P]
