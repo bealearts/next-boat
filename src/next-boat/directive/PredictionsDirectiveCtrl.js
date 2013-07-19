@@ -1,5 +1,5 @@
 
-module.controller('PredictionDirectiveCtrl', ['$scope', function($scope)
+module.controller('PredictionsDirectiveCtrl', ['$scope', function($scope)
 {
 	$scope.minutesUntil = function(time)
 	{
