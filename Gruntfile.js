@@ -6,6 +6,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-ftp-deploy');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-contrib-clean');
 
 
   // Project configuration.
@@ -13,6 +14,11 @@ module.exports = function(grunt) {
   {
     packkage: grunt.file.readJSON('package.json'),
     manifest: grunt.file.readJSON('manifest.json'),
+    clean: {
+      build: {
+        src: ['build']
+      }
+    },
     copy: {
       build: {
         files: [
@@ -58,6 +64,7 @@ module.exports = function(grunt) {
 
   // Tasks
   grunt.registerTask('build', [
+        'clean',
         'copy',
         'manifest',
         'concat'

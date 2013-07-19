@@ -1,5 +1,10 @@
 <ul>
-	<li ng:repeat="prediction in predictions | orderBy:'expectedTime.getTime()'">
-		<strong>{{prediction.pier.name}}</strong> going {{prediction.boat.direction}} to {{prediction.boat.destination}} in <strong>{{minutesUntil(prediction.expectedTime)}}</strong> mins
+	<li>
+		<span>{{pier.name}}</spam>
+		<ul>
+			<li ng:repeat="prediction in predictions | filter: prediction.direction = direction | orderBy:'expectedTime.getTime()'">
+				<strong>{{prediction.pier.name}}</strong> going {{prediction.boat.direction}} to {{prediction.boat.destination}} in <strong>{{minutesUntil(prediction.expectedTime)}}</strong> mins
+			</li>
+		</ul>
 	</li>
 </ul>

@@ -6,7 +6,9 @@ module.directive('nbPredictions', [function(){
 		replace: true,
 		templateUrl: 'next-boat/directive/PredictionsDirective.html',
 		scope: {
-			predictions: '='
+			pier: '=',
+			predictions: '=',
+			direction: '@',
 		},
 		controller: 'PredictionsDirectiveCtrl'
 	};
