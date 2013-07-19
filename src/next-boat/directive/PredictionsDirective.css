@@ -1,3 +1,14 @@
+
+@font-face 
+{
+    font-family: 'bpdotsunicasesquarelight';
+    src: url('assets/BPdotsUnicaseSquareLight-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+
 ul.predictions
 {
 	list-style: none;
@@ -35,6 +46,9 @@ ul.predictions ul
 ul.predictions ul li
 {
 	color: #FFCC00;
+	font-family: 'bpdotsunicasesquarelight', Helvetica;
+	font-size: 20pt;
+	font-weight: normal;
 	border-top: 2px solid #202020;
 	border-left: 2px solid #202020;
 	border-bottom: 2px solid #666666; 
@@ -42,7 +56,8 @@ ul.predictions ul li
 	padding-left: 3px;
 	padding-right: 3px;
 	height: 26px;
-	line-height: 26px; 
+	line-height: 20px;
+	opacity: 1.0; 
 }
 
 ul.predictions ul li span
@@ -50,4 +65,7 @@ ul.predictions ul li span
 	float: right;
 	color: inherit;
 	font-size: inherit;
+	font-family: inherit;
+	font-weight: inherit;
+	opacity: inherit;
 }
