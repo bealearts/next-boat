@@ -1,0 +1,24 @@
+
+h1,h2,h3,h4,h5,h6,pre,form,body,html,p,blockquote,fieldset,input,dl,dd,dt
+{
+	margin: 0px;
+	padding: 0px;
+}
+
+body
+{
+	width: 320px;
+	height: 480px;
+	font-family: 'Helvetica Neue', Helvetica;
+	font-weight: 600;
+}
+
+h1
+{
+	height: 44px;
+	color: white;
+	background: repeat-x url('assets/title-bar.png') black;
+	font-size: 16pt;
+	text-align: center;
+	line-height: 42px;	/* Vertically centre the text! */
+}

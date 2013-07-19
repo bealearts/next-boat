@@ -1,9 +1,9 @@
-<ul>
+<ul class="predictions">
 	<li>
-		<span>{{pier.name}}</spam>
+		<span>{{pier.name}}</span>
 		<ul>
 			<li ng:repeat="prediction in predictions | filter: prediction.direction = direction | orderBy:'expectedTime.getTime()'">
-				<strong>{{prediction.pier.name}}</strong> going {{prediction.boat.direction}} to {{prediction.boat.destination}} in <strong>{{minutesUntil(prediction.expectedTime)}}</strong> mins
+				{{prediction.boat.destination}} <span>{{minutesUntil(prediction.expectedTime)}}</span>
 			</li>
 		</ul>
 	</li>

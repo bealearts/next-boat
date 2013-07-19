@@ -32,13 +32,17 @@ module.exports = function(grunt) {
       }
     },
     concat: {
-      options: {
-        banner: '(function(){\n\n"use strict";\n\nvar module = angular.module(\'next-boat\', []);\n\n',
-        footer: '\n\n}.call({}));'
-      },
-      build: {
+      buildJS: {
+        options: {
+          banner: '(function(){\n\n"use strict";\n\nvar module = angular.module(\'next-boat\', []);\n\n',
+          footer: '\n\n}.call({}));'
+        },
         src: ['src/next-boat/**/*.js'],
         dest: 'build/next-boat/next-boat.js'
+      },
+      buildCSS: {
+        src: ['src/next-boat/**/*.css'],
+        dest: 'build/next-boat/next-boat.css'
       }
     },
     'ftp-deploy': {
