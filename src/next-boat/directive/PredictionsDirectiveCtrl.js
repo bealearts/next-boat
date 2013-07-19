@@ -8,4 +8,5 @@ module.controller('PredictionsDirectiveCtrl', ['$scope', function($scope)
 
 		return Math.ceil( (time.getTime()-now.getTime()) / MINUTES);
 	}
+
 }]);
