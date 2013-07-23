@@ -8,4 +8,12 @@ module.controller('MainCtrl', ['$scope', 'RiverBusPredictionsService', function 
 	$scope.topPierPredictions = riverBusPredictionsService.subscribe($scope.topPier);
 	$scope.bottomPierPredictions = riverBusPredictionsService.subscribe($scope.bottomPier);
 
+
+	$scope.topPier.a = ['a'];
+	console.log($scope.topPier);
+	var im = Immutable.clone($scope.topPier);
+	console.log(im);
+
+
+
 }]);

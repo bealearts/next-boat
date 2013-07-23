@@ -3,7 +3,7 @@
 		<span>{{pier.name}}</span>
 		<ul>
 			<li ng:repeat="prediction in predictions | filter: prediction.direction = direction | orderBy:'expectedTime.getTime()'">
-				{{prediction.boat.destination | uppercase}} <span>{{minutesUntil(prediction.expectedTime)}}</span>
+				{{prediction.boat.destination | uppercase}}<span>{{minutesUntil(prediction.expectedTime)}}</span>
 			</li>
 		</ul>
 	</li>

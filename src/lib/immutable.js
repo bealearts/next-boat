@@ -46,7 +46,7 @@
 		{
 			var immutableArray = Object.create( Array.prototype );
 
-			immutableArray = (Array.apply( immutableArray, arguments ) || immutableArray);
+			immutableArray = Array.apply(immutableArray, arguments);
 
 			return immutableArray;
 		};
