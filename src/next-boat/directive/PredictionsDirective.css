@@ -12,16 +12,16 @@
 ul.predictions
 {
 	list-style: none;
-	padding: 0px;
+	padding-top: 4px;
 	padding-left: 3px;
 	padding-right: 2px;
-	height: 120px;
+	height: 130px;
 	width: 266px;
 	background: #333333;
 	position: absolute;
 	top: 50%;
 	left: 50%;
-	margin: -60px 0 0 -133px;
+	margin: -65px 0 0 -133px;
 	opacity: 0.9;
 	border-top: 2px solid #666666;
 	border-left: 2px solid #666666;
@@ -34,7 +34,16 @@ ul.predictions span
 {
 	opacity: 1.0;
 	color: #999999;
-	font-size: 10pt;
+	font-size: 12pt;
+	position: relative;
+	display: block;
+	height: 24px;
+	padding-left: 2px;
+}
+
+ul.predictions span.status
+{
+	float: right;
 }
 
 ul.predictions ul

@@ -9,6 +9,28 @@ module.controller('MainCtrl', ['$scope', 'RiverBusPredictionsService', function 
 	$scope.bottomPierPredictions = riverBusPredictionsService.subscribe($scope.bottomPier);
 
 
+	$scope.topPierPredictions.then(function (predictions) {
+		if (predictions)
+		{
+			if (predictions.length == 0)
+				$scope.topPier.status = null;
+			else
+				$scope.topPier.status = predictions[0].pier.status;
+		}	
+	});
+
+	$scope.bottomPierPredictions.then(function (predictions) {
+		if (predictions)
+		{
+			if (predictions.length == 0)
+				$scope.bottomPier.status = null;
+			else
+				$scope.bottomPier.status = predictions[0].pier.status;
+		}	
+	});
+
+
+
 	$scope.topPier.a = ['a'];
 	console.log($scope.topPier);
 	var im = Immutable.clone($scope.topPier);

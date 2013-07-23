@@ -1,8 +1,8 @@
 <ul class="predictions">
 	<li>
-		<span>{{pier.name}}</span>
+		<span>{{pier.name}}<span class="status">{{pier.status}}</span></span>
 		<ul>
-			<li ng:repeat="prediction in predictions | filter: prediction.direction = direction | orderBy:'expectedTime.getTime()'">
+			<li ng:repeat="prediction in predictions | filter: predictionFilter | orderBy:'expectedTime.getTime()'">
 				{{prediction.boat.destination | uppercase}}<span>{{minutesUntil(prediction.expectedTime)}}</span>
 			</li>
 		</ul>

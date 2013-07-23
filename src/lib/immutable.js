@@ -85,7 +85,7 @@
 		function deepClone(obj)
 		{
 			return JSON.parse(JSON.stringify(obj), function(prop, value) { 
-				if (typeof(value) === 'object') 
+				if (value && typeof(value) === 'object') 
 				{
 					if (Array.isArray(value))
 						var typed = new global.Immutable.Array();

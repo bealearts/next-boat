@@ -9,4 +9,9 @@ module.controller('PredictionsDirectiveCtrl', ['$scope', function($scope)
 		return Math.ceil( (time.getTime()-now.getTime()) / MINUTES);
 	}
 
+	$scope.predictionFilter = function(prediction)
+	{
+		return prediction.boat.direction === $scope.direction && prediction.pier.status < 2;
+	}
+
 }]);
