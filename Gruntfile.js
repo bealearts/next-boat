@@ -7,6 +7,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-bower-task');
 
 
   // Project configuration.
@@ -17,6 +18,14 @@ module.exports = function(grunt) {
     clean: {
       build: {
         src: ['build']
+      }
+    },
+    bower: {
+      build: {
+        options: {
+          targetDir: 'build/lib',
+          copy: true
+        } 
       }
     },
     copy: {
@@ -70,6 +79,7 @@ module.exports = function(grunt) {
   grunt.registerTask('build', [
         'clean',
         'copy',
+        'bower',
         'manifest',
         'concat'
   ]);
