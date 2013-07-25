@@ -15,7 +15,6 @@ module.exports = function(grunt) {
   grunt.initConfig(
   {
     packkage: grunt.file.readJSON('package.json'),
-    manifest: grunt.file.readJSON('manifest.json'),
     clean: {
       build: {
         src: ['build']
@@ -36,7 +35,7 @@ module.exports = function(grunt) {
           {
             expand: true,
             cwd: 'src/',
-            src: ['**/.htaccess', '**/*.*', '!next-boat/**/*.js'], 
+            src: ['**/.htaccess', '**/*.*', '!next-boat/**/*.js', '!next-boat/**/*.css'], 
             dest: 'build/'
           }
         ]
@@ -61,6 +60,22 @@ module.exports = function(grunt) {
       buildCSS: {
         src: ['src/next-boat/**/*.css'],
         dest: 'build/next-boat/next-boat.css'
+      }
+    },
+    manifest: {
+      build: 
+      {
+        options: 
+        {
+          basePath: "./build",
+          network: ["http://*", "https://*"],
+          fallback: [],
+          exclude: [],
+          preferOnline: true,
+          timestamp: true
+        },
+        src: ["**/*.*"],
+        dest: "./build/manifest.appcache"
       }
     },
     'ftp-deploy': {
@@ -89,9 +104,9 @@ module.exports = function(grunt) {
         'clean',
         'copy',
         'bower',
-        'manifest',
         'ngtemplates',
-        'concat'
+        'concat',
+        'manifest'
   ]);
 
   grunt.registerTask('deploy', [
