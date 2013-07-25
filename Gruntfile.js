@@ -11,6 +11,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-angular-templates');
 
 
+  // Temp dir
+  var TempDir = require('temporary/lib/dir');
+  var tempDir = new TempDir().path;
+
   // Project configuration.
   grunt.initConfig(
   {
@@ -18,6 +22,17 @@ module.exports = function(grunt) {
     clean: {
       build: {
         src: ['build']
+      }
+    },
+    ngtemplates: {
+      build: {
+        options: {
+          module: 'next-boat',
+          concat: 'buildJS',
+          base: 'src'
+        },
+        src: 'src/next-boat/**/**.html',
+        dest: tempDir + '/templates.js'
       }
     },
     bower: {
@@ -35,17 +50,10 @@ module.exports = function(grunt) {
           {
             expand: true,
             cwd: 'src/',
-            src: ['**/.htaccess', '**/*.*', '!next-boat/**/*.js', '!next-boat/**/*.css'], 
+            src: ['**/.htaccess', 'next-boat/assets/**/*.*', '*.*', 'lib/**/*.*'], 
             dest: 'build/'
           }
         ]
-      }
-    },
-    ngtemplates: {
-      build: {
-        module: 'next-boat',
-        src: 'src/next-boat/view/**.html',
-        dest: 'build/next-boat/templates.js'
       }
     },
     concat: {
@@ -102,9 +110,9 @@ module.exports = function(grunt) {
   // Tasks
   grunt.registerTask('build', [
         'clean',
+        'ngtemplates',
         'copy',
         'bower',
-        'ngtemplates',
         'concat',
         'manifest'
   ]);
