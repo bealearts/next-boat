@@ -1,9 +1,4 @@
 
-/*h1,h2,h3,h4,h5,h6,pre,form,body,html,p,blockquote,fieldset,input,dl,dd,dt
-{
-	margin: 0px;
-	padding: 0px;
-}*/
 
 body
 {
@@ -15,6 +10,8 @@ body
 
 h1
 {
+	margin: 0px;
+	padding: 0px;
 	height: 44px;
 	color: white;
 	background: repeat-x url('assets/title-bar.png') black;

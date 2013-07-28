@@ -9,11 +9,13 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-bower-task');
   grunt.loadNpmTasks('grunt-angular-templates');
+  grunt.loadNpmTasks('grunt-contrib-less');
 
 
   // Temp dir
   var TempDir = require('temporary/lib/dir');
   var tempDir = new TempDir().path;
+
 
   // Project configuration.
   grunt.initConfig(
@@ -22,6 +24,13 @@ module.exports = function(grunt) {
     clean: {
       build: {
         src: ['build']
+      }
+    },
+    less: {
+      build: {
+        files: {
+          src: ['src/next-boat/**/*.less']
+        }
       }
     },
     ngtemplates: {
@@ -110,6 +119,7 @@ module.exports = function(grunt) {
   // Tasks
   grunt.registerTask('build', [
         'clean',
+        'less',
         'ngtemplates',
         'copy',
         'bower',

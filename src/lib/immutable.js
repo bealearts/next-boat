@@ -9,9 +9,12 @@
 		/* Immutable */
 
 
-		global.Immutable.create = function (proto, propertyObject)
+		global.Immutable.create = function (protoFunc, properties)
 		{
-			var obj = Object.create(proto, propertyObject);
+			if (typeof(protoFunc) === 'function')
+				var obj = new protoFunc(properties);
+			else	
+				var obj = Object.create(proto, properties);
 			
 			makeImmutable(obj);
 			return obj; 
