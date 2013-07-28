@@ -1,6 +1,8 @@
 
-var Boat = function()
+var Boat = function(direction, destination)
 {
-	this.direction = '';
-	this.destination = '';
+	this.direction = direction || '';
+	this.destination = destination || '';
+
+	Immutable.construct(this);
 }

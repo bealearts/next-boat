@@ -9,6 +9,11 @@
 		/* Immutable */
 
 
+		/**
+		 * Create an Immutable Object from either;
+		 * 		a Prototype Object and optional Object Definition Object
+		 * 		or a Constructor Function and optional arguments Array
+		 */
 		global.Immutable.create = function (protoFunc, properties)
 		{
 			if (typeof(protoFunc) === 'function')
@@ -21,10 +26,13 @@
 		};
 
 
+		/**
+		 * Clone an Immutable (or Mutable) Object returning an Immutable Object with
+		 * optionaly changing any property defined in properties
+		 */
 		global.Immutable.clone = function (obj, properties)
 		{
 			var result = deepClone(obj);
-
 
 			// Modify properties
 			if (properties)
@@ -35,10 +43,19 @@
 				}
 			}
 
-
 			makeImmutable(result);
 			return result;
 		};
+
+
+		/**
+		 * Construct an imutable object within a Constructor Function
+		 */
+		global.Immutable.construct = function(obj)
+		{
+			if (!cloneing) 
+				makeImmutable(obj);
+		}
 
 
 
@@ -54,10 +71,12 @@
 			return immutableArray;
 		};
 
+
 		global.Immutable.Array.isImmutable = function (array)
 		{
 
 		}
+
 
 		// Override mutating functions
 		var funcs = ['push', 'unshift', 'reverse', 'splice'];
@@ -77,6 +96,8 @@
 
 		/* PRIVATE */
 
+		var cloneing = false;
+
 
 		function makeImmutable(obj)
 		{
@@ -87,7 +108,9 @@
 		// Deep property Clone while maintining 'type'
 		function deepClone(obj)
 		{
-			return JSON.parse(JSON.stringify(obj), function(prop, value) { 
+			cloneing = true;
+
+			var result = JSON.parse(JSON.stringify(obj), function(prop, value) { 
 				if (value && typeof(value) === 'object') 
 				{
 					if (Array.isArray(value))
@@ -96,18 +119,22 @@
 						var typed = new obj.constructor;
 					
 					var typedRef = typed;
-					
+				
 					Object.keys(value).forEach(function(prop) {
 						if (typeof(value[prop]) !== 'function')  
 							typedRef[prop] = value[prop];				
 					});
-
+	
 					typedRef = null;
 					return typed;
 				}
 				else
 					return value; 
-			});			
+			});
+
+			cloneing = false;
+
+			return result;			
 		}
 
 	}

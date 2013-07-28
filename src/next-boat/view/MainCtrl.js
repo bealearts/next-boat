@@ -13,9 +13,9 @@ module.controller('MainCtrl', ['$scope', 'RiverBusPredictionsService', function 
 		if (predictions)
 		{
 			if (predictions.length == 0)
-				$scope.topPier.status = null;
+				$scope.topPier = Immutable.clone($scope.topPier, {status: null});
 			else
-				$scope.topPier.status = predictions[0].pier.status;
+				$scope.topPier = Immutable.clone($scope.topPier, {status: predictions[0].pier.status});
 		}	
 	});
 
@@ -23,19 +23,11 @@ module.controller('MainCtrl', ['$scope', 'RiverBusPredictionsService', function 
 		if (predictions)
 		{
 			if (predictions.length == 0)
-				$scope.bottomPier.status = null;
+				$scope.bottomPier = Immutable.clone($scope.bottomPier, {status: null});
 			else
-				$scope.bottomPier.status = predictions[0].pier.status;
+				$scope.bottomPier = Immutable.clone($scope.bottomPier, {status: predictions[0].pier.status});
 		}	
 	});
-
-
-
-	$scope.topPier.a = ['a'];
-	console.log($scope.topPier);
-	var im = Immutable.clone($scope.topPier);
-	console.log(im);
-
 
 
 }]);

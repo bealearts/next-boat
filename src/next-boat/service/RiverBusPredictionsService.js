@@ -83,14 +83,11 @@ module.factory('RiverBusPredictionsService', ['$http', '$log', 'StreamingPromise
 
 					if (predictions)
 					{
-						var prediction = new Prediction();
-
-						prediction.pier.id = pierId;
-						prediction.pier.name = item[1];
-						prediction.pier.status = item[3];
-						prediction.boat.direction = item[4] == 1 ? 'East': 'West';
-						prediction.boat.destination = item[5];
-						prediction.expectedTime = new Date(item[6]);
+						var prediction = new Prediction(
+							new Pier(pierId, item[1], item[3]),
+							new Boat(item[4] == 1 ? 'East': 'West', item[5]),
+							new Date(item[6])
+						);
 
 						predictions.push(prediction);
 					}

@@ -1,7 +1,9 @@
 
-var Prediction = function()
+var Prediction = function(pier, boat, expectedTime)
 {
-	this.pier = new Pier();
-	this.boat = new Boat();
-	this.expectedTime = new Date();
+	this.pier = pier || new Pier();
+	this.boat = boat || new Boat();
+	this.expectedTime = expectedTime || new Date();
+
+	//Immutable.construct(this);
 }

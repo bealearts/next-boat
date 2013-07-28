@@ -1,9 +1,9 @@
 
-var Pier = function(id, name)
+var Pier = function(id, name, status)
 {
-
 	this.id = id || '';
 	this.name = name || '';
-	this.status = null;
+	this.status = status || null;
 
+	Immutable.construct(this);
 }
