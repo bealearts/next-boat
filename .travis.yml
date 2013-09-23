@@ -4,6 +4,7 @@ env:
   - secure: "cKz5Tw+5DEwKF6FWGwUbMPoIExFWoJy3H04S98nAyTkbpFMAru0g/2Hx57vl\nXQeKxCCFBovks5dDjprB4RCrkfocFwDNSm+HkWTXD9l2iTEGWDuaRV04Pyud\nLE6/ZcuL67G/waUaBuhx1SA0IHvDi72NzQugIKTZ4bLCeTo7h6c="
 
 script:
+  - bower install
   - grunt deploy --verbose 
 
 before_script:

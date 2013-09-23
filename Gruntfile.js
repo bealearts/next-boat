@@ -7,7 +7,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.loadNpmTasks('grunt-bower-task');
   grunt.loadNpmTasks('grunt-angular-templates');
   grunt.loadNpmTasks('grunt-contrib-less');
 
@@ -42,15 +41,6 @@ module.exports = function(grunt) {
         },
         src: 'src/next-boat/**/**.html',
         dest: tempDir + '/templates.js'
-      }
-    },
-    bower: {
-      build: {
-        options: {
-          targetDir: 'build/lib',
-          copy: true,
-          cleanBowerDir: true
-        } 
       }
     },
     copy: {
@@ -122,7 +112,6 @@ module.exports = function(grunt) {
         'less',
         'ngtemplates',
         'copy',
-        'bower',
         'concat',
         'manifest'
   ]);
